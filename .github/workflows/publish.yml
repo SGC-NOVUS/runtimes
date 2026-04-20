@@ -1,0 +1,57 @@
+name: Build and Publish Core Images
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'debian-source/**'
+      - 'debian-java/**'
+      - 'python-bot/**'
+      - '.github/workflows/publish.yml'
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME_PREFIX: ${{ github.repository_owner }}/core-images
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    strategy:
+      matrix:
+        include:
+          - context: ./debian-source
+            tag: source
+          - context: ./debian-java
+            tag: java
+          - context: ./python-bot
+            tag: python
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_PREFIX }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: ${{ matrix.context }}
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_PREFIX }}:${{ matrix.tag }}
+          labels: ${{ steps.meta.outputs.labels }}
