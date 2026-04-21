@@ -9,6 +9,11 @@ on:
       - 'debian-java/**'
       - 'python-bot/**'
       - '.github/workflows/publish.yml'
+  # Добавлено: автоматический запуск каждый понедельник в 04:00 утра (по UTC)
+  schedule:
+    - cron: '0 4 * * 1'
+  # Добавлено: кнопка ручного запуска прямо из интерфейса GitHub
+  workflow_dispatch:
 
 env:
   REGISTRY: ghcr.io
@@ -44,12 +49,12 @@ jobs:
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6 # Обновлено до v6 для устранения предупреждений
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_PREFIX }}
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6 # Обновлено до v6 для устранения предупреждений
         with:
           context: ${{ matrix.context }}
           push: true

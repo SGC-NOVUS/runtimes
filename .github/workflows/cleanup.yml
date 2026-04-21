@@ -1,0 +1,30 @@
+name: Cleanup Old Docker Images
+
+# Настраиваем расписание: запуск каждое воскресенье в 03:00 ночи
+on:
+  schedule:
+    - cron: '0 3 * * 0'
+  # Добавляем возможность запустить очистку руками по кнопке
+  workflow_dispatch:
+
+# Выдаем права скрипту на удаление пакетов
+permissions:
+  packages: write
+  contents: read
+
+jobs:
+  clean-ghcr:
+    name: Delete untagged images
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete old packages
+        uses: actions/delete-package-versions@v5
+        with:
+          # Имя твоего пакета. Если все образы собираются под одним именем, оставляем core-images
+          package-name: 'core-images'
+          package-type: 'container'
+          # Сколько последних версий оставлять для подстраховки
+          min-versions-to-keep: 3
+          # Удалять ТОЛЬКО старые сборки, у которых слетел тег (чтобы не удалить актуальные python, debian-java)
+          delete-only-untagged-versions: 'true'
+          token: ${{ secrets.GITHUB_TOKEN }}
