@@ -3,21 +3,18 @@
 
 Standardized Docker images for game servers and applications.
 
-## Overview
-Official runtime image catalog consumed by NOVUS-OS provisioning workflows.
+## Repository Role
+Public runtime image catalog used by NOVUS-OS provisioning workflows.
 
 ## Build and Delivery
-Images are built and published through CI pipelines to GHCR.
-Reference prefix: ghcr.io/sgc-novus/runtimes.
+Docker image pipelines are maintained in this repository and published to GHCR.
+Image prefix: ghcr.io/sgc-novus/runtimes.
 
 ## Update Cadence
-Runtime refresh jobs are expected to run on a weekly cycle.
+Runtime refresh jobs run on a regular weekly cycle.
 
 ## Security
-Base images and dependencies should be patched on every scheduled refresh.
-
-## Support
-Operator documentation and compatibility notes are maintained with tags and changelog updates.
+Base images and dependencies must be patched on scheduled refreshes.
 
 ## License
 See LICENSE in this repository.
