@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
 
 LABEL maintainer="SGC-NOVUS Tech"
 LABEL org.opencontainers.image.source="https://github.com/sgc-novus/core-images"
@@ -20,7 +20,7 @@ RUN dpkg --add-architecture i386 && \
         build-essential \
         lib32gcc-s1 \
         lib32stdc++6 \
-        libtinfo5:i386 \
+        libtinfo6:i386 \
         libcurl4-gnutls-dev:i386 \
         libmariadb3:i386 \
         libsdl2-2.0-0:i386 \
