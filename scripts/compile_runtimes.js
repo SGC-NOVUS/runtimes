@@ -144,15 +144,20 @@ async function main() {
         }
         
         const iconName = `${dir.name}.webp`;
-        const cleanRelativePath = encodeURIComponent(dir.name);
-        const iconUrl = `${CUSTOM_DOMAIN}/${cleanRelativePath}/${iconName}`;
-        const fallbackIconUrl = `https://raw.githubusercontent.com/${REPO_OWNER_NAME}/${BRANCH}/${cleanRelativePath}/${iconName}`;
+        const tagMap = {
+            'debian-source': 'source',
+            'debian-java': 'java',
+            'python-bot': 'python'
+        };
+        const tag = tagMap[dir.name] || dir.name;
         
-        const pullCmd = `docker pull ghcr.io/sgc-novus/core-images:${dir.name}`;
+        const pullCmd = `docker pull ghcr.io/sgc-novus/core-images:${tag}`;
+        const iconUrl = `${CUSTOM_DOMAIN}/runtimes/${dir.name}/${iconName}`;
+        const fallbackIconUrl = `https://raw.githubusercontent.com/${REPO_OWNER_NAME}/${BRANCH}/${dir.name}/${iconName}`;
         
         runtimesData.push({
             id: dir.name,
-            tag: dir.name,
+            tag: tag,
             pullCmd,
             iconUrl,
             fallbackIconUrl,
