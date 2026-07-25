@@ -1,0 +1,93 @@
+[
+    {
+        "id": "debian-java",
+        "tag": "debian-java",
+        "pullCmd": "docker pull ghcr.io/sgc-novus/core-images:debian-java",
+        "iconUrl": "https://hub.sgc-novus.fun/debian-java/debian-java.webp",
+        "fallbackIconUrl": "https://raw.githubusercontent.com/SGC-NOVUS/runtimes/main/debian-java/debian-java.webp",
+        "components": [
+            "Debian Bullseye Slim",
+            "OpenJDK 17 JRE Headless",
+            "cURL",
+            "Wget",
+            "Git",
+            "Unzip",
+            "JQ",
+            "CA Certificates"
+        ],
+        "locales": {
+            "en": {
+                "name": "Robust Game Server Java Runtime",
+                "description": "A secure, containerized Debian-based execution environment optimized for hosting modern Java-powered game servers with essential utilities like cURL, Git, and OpenJDK 17."
+            },
+            "ru": {
+                "name": "Robust Game Server Java Runtime",
+                "description": "Безопасная контейнеризированная среда выполнения на базе Debian, оптимизированная для хостинга современных игровых серверов на базе Java с необходимыми утилитами, такими как cURL, Git и OpenJDK 17."
+            },
+            "uk": {
+                "name": "Надійне середовище виконання Java для ігрових серверів",
+                "description": "Безпечне середовище виконання на базі Debian у контейнері, оптимізоване для розміщення сучасних ігрових серверів на базі Java з необхідними утилітами, такими як cURL, Git та OpenJDK 17."
+            }
+        }
+    },
+    {
+        "id": "debian-source",
+        "tag": "debian-source",
+        "pullCmd": "docker pull ghcr.io/sgc-novus/core-images:debian-source",
+        "iconUrl": "https://hub.sgc-novus.fun/debian-source/debian-source.webp",
+        "fallbackIconUrl": "https://raw.githubusercontent.com/SGC-NOVUS/runtimes/main/debian-source/debian-source.webp",
+        "components": [
+            "Debian Bookworm Slim",
+            "Multi-arch (i386 support)",
+            "cURL",
+            "Wget",
+            "Git",
+            "Build Essential",
+            "32-bit Game Runtime Libraries (lib32gcc-s1, lib32stdc++, SDL2)"
+        ],
+        "locales": {
+            "en": {
+                "name": "Robust Game Server Base Runtime",
+                "description": "A secure, optimized Debian Bookworm-based container runtime specifically tailored for hosting demanding multiplayer game servers with multi-architecture support and essential administration utilities."
+            },
+            "ru": {
+                "name": "Надежная базовая среда выполнения для игровых серверов",
+                "description": "Безопасная, оптимизированная среда выполнения контейнеров на базе Debian Bookworm, специально созданная для хостинга ресурсоемких серверов многопользовательских игр с поддержкой мультиархитектуры и основными утилитами администрирования."
+            },
+            "uk": {
+                "name": "Надійне базове середовище виконання ігрового сервера",
+                "description": "Безпечне оптимізоване середовище виконання контейнерів на базі Debian Bookworm, спеціально створене для розміщення вимогливих багатокористувацьких ігрових серверів з підтримкою мультиархітектури та необхідними адміністративними утилітами."
+            }
+        }
+    },
+    {
+        "id": "python-bot",
+        "tag": "python-bot",
+        "pullCmd": "docker pull ghcr.io/sgc-novus/core-images:python-bot",
+        "iconUrl": "https://hub.sgc-novus.fun/python-bot/python-bot.webp",
+        "fallbackIconUrl": "https://raw.githubusercontent.com/SGC-NOVUS/runtimes/main/python-bot/python-bot.webp",
+        "components": [
+            "Debian Bullseye (slim)",
+            "Python 3.11",
+            "cURL",
+            "Git",
+            "jq",
+            "GCC",
+            "Python 3 Development Headers"
+        ],
+        "locales": {
+            "en": {
+                "name": "Python Game Server Runtime",
+                "description": "A lightweight and secure Python 3.11 runtime environment tailored for game server management, equipped with essential utilities like git, curl, and build tools."
+            },
+            "ru": {
+                "name": "Среда выполнения игрового сервера Python",
+                "description": "Легковесная и безопасная среда выполнения Python 3.11, адаптированная для управления игровыми серверами, оснащенная необходимыми утилитами, такими как git, cURL и инструменты сборки."
+            },
+            "uk": {
+                "name": "Python Game Server Runtime",
+                "description": "Легковагове та захищене середовище виконання Python 3.11, адаптоване для управління ігровими серверами, оснащене необхідними утилітами, такими як git, cURL та інструменти збирання."
+            }
+        }
+    }
+]
