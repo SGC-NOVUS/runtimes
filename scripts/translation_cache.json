@@ -1,4 +1,78 @@
 {
-    "runtimes": {},
+    "runtimes": {
+        "debian-java": {
+            "hash": "10d2b860c5389e659e2e3a89046e3c1c",
+            "name": "Robust Game Server Java Runtime",
+            "description": "A secure, containerized Debian-based execution environment optimized for hosting modern Java-powered game servers with essential utilities like cURL, Git, and OpenJDK 17.",
+            "components": [
+                "Debian Bullseye Slim",
+                "OpenJDK 17 JRE Headless",
+                "cURL",
+                "Wget",
+                "Git",
+                "Unzip",
+                "JQ",
+                "CA Certificates"
+            ],
+            "locales": {
+                "ru": {
+                    "name": "Robust Game Server Java Runtime",
+                    "description": "Безопасная контейнеризированная среда выполнения на базе Debian, оптимизированная для хостинга современных игровых серверов на базе Java с необходимыми утилитами, такими как cURL, Git и OpenJDK 17."
+                },
+                "uk": {
+                    "name": "Надійне середовище виконання Java для ігрових серверів",
+                    "description": "Безпечне середовище виконання на базі Debian у контейнері, оптимізоване для розміщення сучасних ігрових серверів на базі Java з необхідними утилітами, такими як cURL, Git та OpenJDK 17."
+                }
+            }
+        },
+        "debian-source": {
+            "hash": "09ea985e740491552b2caad0bac9c070",
+            "name": "Robust Game Server Base Runtime",
+            "description": "A secure, optimized Debian Bookworm-based container runtime specifically tailored for hosting demanding multiplayer game servers with multi-architecture support and essential administration utilities.",
+            "components": [
+                "Debian Bookworm Slim",
+                "Multi-arch (i386 support)",
+                "cURL",
+                "Wget",
+                "Git",
+                "Build Essential",
+                "32-bit Game Runtime Libraries (lib32gcc-s1, lib32stdc++, SDL2)"
+            ],
+            "locales": {
+                "ru": {
+                    "name": "Надежная базовая среда выполнения для игровых серверов",
+                    "description": "Безопасная, оптимизированная среда выполнения контейнеров на базе Debian Bookworm, специально созданная для хостинга ресурсоемких серверов многопользовательских игр с поддержкой мультиархитектуры и основными утилитами администрирования."
+                },
+                "uk": {
+                    "name": "Надійне базове середовище виконання ігрового сервера",
+                    "description": "Безпечне оптимізоване середовище виконання контейнерів на базі Debian Bookworm, спеціально створене для розміщення вимогливих багатокористувацьких ігрових серверів з підтримкою мультиархітектури та необхідними адміністративними утилітами."
+                }
+            }
+        },
+        "python-bot": {
+            "hash": "1c74919bb0d53a77eb47e13aefa21cf8",
+            "name": "Python Game Server Runtime",
+            "description": "A lightweight and secure Python 3.11 runtime environment tailored for game server management, equipped with essential utilities like git, curl, and build tools.",
+            "components": [
+                "Debian Bullseye (slim)",
+                "Python 3.11",
+                "cURL",
+                "Git",
+                "jq",
+                "GCC",
+                "Python 3 Development Headers"
+            ],
+            "locales": {
+                "ru": {
+                    "name": "Среда выполнения игрового сервера Python",
+                    "description": "Легковесная и безопасная среда выполнения Python 3.11, адаптированная для управления игровыми серверами, оснащенная необходимыми утилитами, такими как git, cURL и инструменты сборки."
+                },
+                "uk": {
+                    "name": "Python Game Server Runtime",
+                    "description": "Легковагове та захищене середовище виконання Python 3.11, адаптоване для управління ігровими серверами, оснащене необхідними утилітами, такими як git, cURL та інструменти збирання."
+                }
+            }
+        }
+    },
     "translations": {}
 }
