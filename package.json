@@ -1,0 +1,8 @@
+{
+  "name": "novus-runtimes-compiler",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@google/generative-ai": "^0.3.1"
+  }
+}
