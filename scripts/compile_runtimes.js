@@ -24,15 +24,16 @@ async function fileExists(filePath) {
 
 async function generateBaseData(dockerfileContent, attempt = 1) {
     const prompt = `
-You are a senior DevOps and AI analyzer.
+You are a senior DevOps engineer and technical writer.
 Analyze this Dockerfile used for a game server runtime. 
-Extract the core components (OS base, packages like java, python, curl, etc.) and create a catchy title and professional description.
+Extract the core components (OS base, packages like java, python, curl, etc.).
+Create a catchy, professional title and a COMPREHENSIVE, detailed description (at least 3-4 sentences). The description should explain exactly what this image is tailored for, its performance benefits, and why a server administrator would use it. Do NOT output a single sentence.
 Also, perform a Health Check. If you find outdated base images (like debian:bullseye-slim instead of bookworm) or old dependencies, flag them in a "warnings" array.
 
 Return EXACTLY a JSON object with this schema:
 {
-  "name": "Catchy Title (e.g., Debian Java Runtime)",
-  "description": "Professional description of what this runtime provides...",
+  "name": "Catchy Title (e.g., Enterprise Java Runtime)",
+  "description": "Detailed, professional description of what this runtime provides...",
   "components": ["Debian Bullseye", "Java 17", "cURL", "Git"],
   "warnings": ["Array of strings describing outdated components, or empty if none"]
 }
@@ -57,7 +58,8 @@ ${dockerfileContent}
 
 async function translateData(payload, langCode, attempt = 1) {
     const prompt = `
-Translate the following JSON object into "${langCode}".
+You are a professional IT and DevOps localizer. Translate the following JSON object into "${langCode}".
+Make the translation sound natural, professional, and appealing to game server administrators. Avoid literal or "robotic" translations. Ensure grammatical correctness.
 Keep technical terms (Debian, Java, cURL, Python) in English.
 Return ONLY a valid JSON object with the exact same keys as the input.
 
