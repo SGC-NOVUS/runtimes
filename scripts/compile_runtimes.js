@@ -18,16 +18,24 @@ const model = genAI.getGenerativeModel({
     generationConfig: { responseMimeType: "application/json" }
 });
 
+function getMD5(data) {
+    return crypto.createHash('md5').update(data).digest('hex');
+}
+
 async function fileExists(filePath) {
     try { await fs.access(filePath); return true; } catch { return false; }
 }
 
-async function generateBaseData(dockerfileContent, attempt = 1) {
+async function generateBaseData(dirName, dockerfileContent, attempt = 1) {
     const prompt = `
 You are a senior DevOps engineer and technical writer.
-Analyze this Dockerfile used for a game server runtime. 
+Analyze this Dockerfile. The directory name for this image is "${dirName}".
+IMPORTANT CONTEXT:
+- If the directory name contains "bot" or "python", this image is intended for running companion bots (like Telegram/Discord bots), administration scripts, or panel orchestrators. Do NOT call it a "game server".
+- If the directory name contains "source" or "java", it is intended as a base runtime for multiplayer game servers.
+
 Extract the core components (OS base, packages like java, python, curl, etc.).
-Create a catchy, professional title and a COMPREHENSIVE, detailed description (at least 3-4 sentences). The description should explain exactly what this image is tailored for, its performance benefits, and why a server administrator would use it. Do NOT output a single sentence.
+Create a catchy, professional title and a COMPREHENSIVE, detailed description (at least 3-4 sentences). The description should explain exactly what this image is tailored for, its performance benefits, and why a DevOps administrator would use it. Do NOT output a single sentence.
 Also, perform a Health Check. If you find outdated base images (like debian:bullseye-slim instead of bookworm) or old dependencies, flag them in a "warnings" array.
 
 Return EXACTLY a JSON object with this schema:
@@ -50,7 +58,7 @@ ${dockerfileContent}
     } catch (e) {
         if (attempt < 3) {
             await new Promise(res => setTimeout(res, Math.pow(2, attempt) * 1000));
-            return generateBaseData(dockerfileContent, attempt + 1);
+            return generateBaseData(dirName, dockerfileContent, attempt + 1);
         }
         throw e;
     }
@@ -108,13 +116,17 @@ async function main() {
         
         console.log(`\n⚙️  Analyzing ${dir.name}...`);
         const dockerfileContent = await fs.readFile(dockerfilePath, 'utf-8');
-        const hash = crypto.createHash('md5').update(dockerfileContent).digest('hex');
+        const currentHash = getMD5(dockerfileContent);
         
-        let runtimeInfo = cache.runtimes[dir.name];
+        let baseData = null;
+        const cacheEntry = cache.runtimes[dir.name];
         
-        if (!runtimeInfo || runtimeInfo.hash !== hash) {
-            console.log(`[AI] Generating description and components for ${dir.name}...`);
-            const baseData = await generateBaseData(dockerfileContent);
+        if (cacheEntry && cacheEntry.hash === currentHash) {
+            console.log(`[CACHE] Base data for ${dir.name} is up to date.`);
+            baseData = cacheEntry.data;
+        } else {
+            console.log(`[AI] Generating base data for ${dir.name}...`);
+            baseData = await generateBaseData(dir.name, dockerfileContent);
             
             if (baseData.warnings && baseData.warnings.length > 0) {
                 console.warn(`\n[WARNING] AI Health Check for ${dir.name} indicates outdated components:`);
@@ -122,25 +134,27 @@ async function main() {
                 console.warn('');
             }
             
-            runtimeInfo = {
-                hash,
-                name: baseData.name,
-                description: baseData.description,
-                components: baseData.components || [],
+            cache.runtimes[dir.name] = {
+                hash: currentHash,
+                data: baseData,
                 locales: {}
             };
-            
-            for (const lang of targetLangs) {
+        }
+        
+        const runtimeInfo = cache.runtimes[dir.name];
+        const translations = { ...runtimeInfo.locales };
+        
+        for (const lang of targetLangs) {
+            if (!translations[lang]) {
                 console.log(`[AI] Translating to ${lang}...`);
-                const payload = { name: runtimeInfo.name, description: runtimeInfo.description };
+                const payload = { name: runtimeInfo.data.name, description: runtimeInfo.data.description };
                 const translated = await translateData(payload, lang);
+                translations[lang] = translated;
                 runtimeInfo.locales[lang] = translated;
+                await fs.writeFile(cachePath, JSON.stringify(cache, null, 4));
+            } else {
+                console.log(`[CACHE] Used cached translation for ${lang}`);
             }
-            
-            cache.runtimes[dir.name] = runtimeInfo;
-            await fs.writeFile(cachePath, JSON.stringify(cache, null, 4));
-        } else {
-            console.log(`[CACHE] Used cached data for ${dir.name}`);
         }
         
         const iconName = `${dir.name}.webp`;
@@ -161,10 +175,10 @@ async function main() {
             pullCmd,
             iconUrl,
             fallbackIconUrl,
-            components: runtimeInfo.components,
+            components: runtimeInfo.data.components,
             locales: {
-                en: { name: runtimeInfo.name, description: runtimeInfo.description },
-                ...runtimeInfo.locales
+                en: { name: runtimeInfo.data.name, description: runtimeInfo.data.description },
+                ...translations
             }
         });
     }
