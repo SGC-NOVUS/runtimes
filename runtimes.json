@@ -1,9 +1,9 @@
 [
     {
         "id": "debian-java",
-        "tag": "debian-java",
-        "pullCmd": "docker pull ghcr.io/sgc-novus/core-images:debian-java",
-        "iconUrl": "https://hub.sgc-novus.fun/debian-java/debian-java.webp",
+        "tag": "java",
+        "pullCmd": "docker pull ghcr.io/sgc-novus/core-images:java",
+        "iconUrl": "https://hub.sgc-novus.fun/runtimes/debian-java/debian-java.webp",
         "fallbackIconUrl": "https://raw.githubusercontent.com/SGC-NOVUS/runtimes/main/debian-java/debian-java.webp",
         "components": [
             "Debian Bullseye Slim",
@@ -17,56 +17,57 @@
         ],
         "locales": {
             "en": {
-                "name": "SGC-NOVUS Optimized Game Server Runtime",
-                "description": "This high-performance container image is meticulously tailored for hosting modern Java-based game servers with maximum efficiency and security. By leveraging a stripped-down Debian base, headless Java 17, and essential utilities like cURL, Git, and jq, it provides a lightweight yet robust environment for automated deployment and management. Server administrators will appreciate the non-root execution context and pre-configured UTF-8 locales, which drastically reduce vulnerability surface areas while ensuring seamless compatibility with popular game panels and orchestration tools."
+                "name": "Enterprise Debian Java 17 Runtime",
+                "description": "This high-performance base image is specifically tailored for hosting and orchestrating multiplayer game servers that require a robust Java runtime environment. Built upon a lightweight Debian slim foundation, it includes essential administrative utilities like cURL, Git, and jq to streamline deployment and automated management. DevOps administrators will appreciate the secure non-root user configuration and pre-configured UTF-8 localization, ensuring maximum stability, resource efficiency, and compatibility for enterprise-grade gaming workloads."
             },
             "ru": {
-                "name": "Оптимизированная среда игрового сервера SGC-NOVUS",
-                "description": "Этот высокопроизводительный образ контейнера тщательно настроен для хостинга современных игровых серверов на базе Java с максимальной эффективностью и безопасностью. Благодаря использованию минималистичной базы Debian, headless-версии Java 17 и необходимых утилит, таких как cURL, Git и jq, он представляет собой легкую, но надежную среду для автоматизированного развертывания и управления. Администраторы серверов оценят запуск без привилегий root и предварительно настроенные локали UTF-8, которые существенно снижают поверхность атак и обеспечивают полную совместимость с популярными игровыми панелями и средствами оркестрации."
+                "name": "Enterprise Debian Java 17 Runtime",
+                "description": "Этот высокопроизводительный базовый образ создан специально для хостинга и оркестрации серверов многопользовательских игр, которым требуется надежная среда выполнения Java. Созданный на базе легковесного дистрибутива Debian slim, он включает в себя необходимые утилиты администрирования, такие как cURL, Git и jq, для упрощения деплоя и автоматизированного управления. DevOps-администраторы оценят безопасную конфигурацию непривилегированного пользователя (non-root) и заранее настроенную локализацию UTF-8, которые обеспечивают максимальную стабильность, эффективность использования ресурсов и совместимость с игровыми нагрузками корпоративного уровня."
             },
             "uk": {
-                "name": "Оптимізоване середовище виконання ігрових серверів SGC-NOVUS",
-                "description": "Цей високопродуктивний контейнерний образ ретельно налаштовано для хостингу сучасних ігрових серверів на базі Java з максималенням ефективності та безпеки. Завдяки мінімалістичній базовій ОС Debian, headless Java 17 та необхідним утилітам, таким як cURL, Git і jq, він забезпечує легке, але надійне середовище для автоматизованого розгортання та керування. Адміністратори серверів оцінять виконання без прав root та попередньо налаштовані локалі UTF-8, що суттєво зменшує поверхню вразливостей і водночас гарантує повну сумісність із популярними ігровими панелями та інструментами оркестрації."
+                "name": "Enterprise Debian Java 17 Runtime",
+                "description": "Цей високопродуктивний базовий образ спеціально оптимізовано для хостингу та оркестрації багатокористувацьких ігрових серверів, яким потрібне надійне середовище виконання Java. Створений на базі легкої та компактної основи Debian, він містить необхідні адміністративні утиліти, такі як cURL, Git і jq, що спрощують розгортання та автоматизоване керування. DevOps-адміністратори оцінять безпечну конфігурацію користувача без прав root та попередньо налаштовану локалізацію UTF-8, які гарантують максимальну стабільність, ефективність використання ресурсів і сумісність для ігрових навантажень корпоративного рівня."
             }
         }
     },
     {
         "id": "debian-source",
-        "tag": "debian-source",
-        "pullCmd": "docker pull ghcr.io/sgc-novus/core-images:debian-source",
-        "iconUrl": "https://hub.sgc-novus.fun/debian-source/debian-source.webp",
+        "tag": "source",
+        "pullCmd": "docker pull ghcr.io/sgc-novus/core-images:source",
+        "iconUrl": "https://hub.sgc-novus.fun/runtimes/debian-source/debian-source.webp",
         "fallbackIconUrl": "https://raw.githubusercontent.com/SGC-NOVUS/runtimes/main/debian-source/debian-source.webp",
         "components": [
             "Debian Bookworm Slim",
-            "i386 Multi-architecture Support",
+            "Multiarch (i386 & amd64 support)",
             "cURL",
             "Wget",
             "Git",
             "Build Essential",
-            "32-bit GCC & C++ Libraries",
-            "SDL2 (32-bit)",
-            "MariaDB Connector (32-bit)"
+            "lib32gcc-s1",
+            "lib32stdc++6",
+            "libsdl2-2.0-0",
+            "MariaDB libraries"
         ],
         "locales": {
             "en": {
-                "name": "SGC-NOVUS High-Performance Game Server Runtime",
-                "description": "This production-ready container image is meticulously tailored for hosting demanding multiplayer game servers that require multi-architecture support and robust system dependencies. Built upon a lightweight and secure Debian Bookworm foundation, it includes essential 32-bit runtime libraries, build tools, and networking utilities required by modern game server engines. Server administrators benefit from optimized resource utilization, a non-root security context, and a streamlined environment designed for seamless deployment and high availability."
+                "name": "High-Performance Source Engine Game Server Base",
+                "description": "This enterprise-grade container image is meticulously tailored as a foundational runtime environment for multiplayer game servers, specifically optimized for Source engine titles and hybrid 32/64-bit applications. Featuring a robust Debian Bookworm slim base pre-configured with essential multiarch libraries, build utilities, and networking dependencies like lib32gcc and SDL2, it ensures seamless execution and maximum compatibility. DevOps administrators choose this image for its clean security posture, unprivileged container execution model, and optimized package footprint, which significantly reduces deployment overhead and streamlines server orchestration."
             },
             "ru": {
-                "name": "Высокопроизводительная среда для игровых серверов SGC-NOVUS",
-                "description": "Этот готовый к продакшену контейнер тщательно оптимизирован для хостинга ресурсоемких мультиплеерных игровых серверов, требующих поддержки нескольких архитектур и надежных системных зависимостей. Созданный на базе легкой и безопасной ОС Debian Bookworm, он включает необходимые 32-битные библиотеки выполнения, инструменты сборки и сетевые утилиты, востребованные современными игровыми движками. Администраторы серверов получают выгоду от оптимизированного использования ресурсов, изолированного контекста безопасности без привилегий root и упорядоченной среды, созданной для бесшовного развертывания и высокой доступности."
+                "name": "Высокопроизводительная базовая среда для игровых серверов Source Engine",
+                "description": "Этот контейнерный образ корпоративного уровня тщательно оптимизирован в качестве базовой среды выполнения для многопользовательских игровых серверов, с особым упором на игры на движке Source и гибридные 32/64-битные приложения. Основанный на надежном дистрибутиве Debian Bookworm slim и предварительно настроенный с использованием необходимых multiarch-библиотек, утилит сборки и сетевых зависимостей (таких как lib32gcc и SDL2), он гарантирует бесперебойную работу и максимальную совместимость. Администраторы выбирают этот образ за высокий уровень безопасности, запуск от непривилегированного пользователя и оптимизированный размер пакетов, что существенно снижает нагрузку при развертывании и упрощает оркестрацию серверов."
             },
             "uk": {
-                "name": "Високопродуктивне середовище виконання ігрових серверів SGC-NOVUS",
-                "description": "Цей готовий до продакшену контейнер ретельно оптимізовано для хостингу вимогливих багатокористувацьких ігрових серверів, які потребують підтримки кількох архітектур та надійних системних залежностей. Створений на базі легкої та безпечної системи Debian Bookworm, він містить необхідні 32-розрядні бібліотеки виконання, інструменти збирання та мережеві утиліти, потрібні сучасним рушіям ігрових серверів. Адміністратори серверів отримують переваги від оптимізованого використання ресурсів, безпечного контексту без прав суперкользовача (non-root) та впорядкованого середовища, розробленого для безшовного розгортання та високої доступності."
+                "name": "Високопродуктивна базисна основа ігрового сервера Source Engine",
+                "description": "Цей контейнерний образ корпоративного рівня ретельно оптимізовано як базове середовище виконання для багатокористувацьких ігрових серверів, зокрема для ігор на рушії Source та гібридних 32/64-бітних застосунків. Завдяки надійній мінімальній базі Debian Bookworm, попередньо налаштованій з необхідними багатоархітектурними бібліотеками, утилітами збирання та мережевими залежностями на кшталт lib32gcc і SDL2, він гарантує безперебійну роботу та максимальну сумісність. DevOps-адміністратори обирають цей образ за високий рівень безпеки, модель виконання у непривілейованому контейнері та оптимізований розмір пакетів, що суттєво знижує накладні витрати на розгортання та спрощує оркестрацію серверів."
             }
         }
     },
     {
         "id": "python-bot",
-        "tag": "python-bot",
-        "pullCmd": "docker pull ghcr.io/sgc-novus/core-images:python-bot",
-        "iconUrl": "https://hub.sgc-novus.fun/python-bot/python-bot.webp",
+        "tag": "python",
+        "pullCmd": "docker pull ghcr.io/sgc-novus/core-images:python",
+        "iconUrl": "https://hub.sgc-novus.fun/runtimes/python-bot/python-bot.webp",
         "fallbackIconUrl": "https://raw.githubusercontent.com/SGC-NOVUS/runtimes/main/python-bot/python-bot.webp",
         "components": [
             "Python 3.11",
@@ -75,20 +76,20 @@
             "Git",
             "jq",
             "GCC",
-            "Python3 Development Headers"
+            "Python3-dev"
         ],
         "locales": {
             "en": {
-                "name": "SGC-NOVUS High-Performance Python Game Management Runtime",
-                "description": "This enterprise-grade Docker image is meticulously tailored for hosting and managing advanced Python-driven game server orchestration tools and companion bots. Built upon a secure, non-root user architecture, it minimizes privilege escalation risks while delivering optimal execution performance for resource-intensive workloads. Server administrators would choose this runtime to ensure a reliable, reproducible, and secure environment equipped with essential build utilities and network tools."
+                "name": "Optimized Python Bot & Automation Runtime",
+                "description": "This enterprise-grade Docker image is meticulously engineered for running companion bots, administrative scripts, and panel orchestrators with maximum reliability and efficiency. Built on an optimized Python environment, it features pre-installed essential utilities like Git, cURL, and build tools to support seamless dependency compilation and repository management. DevOps administrators choose this runtime for its strict non-root security posture, minimal footprint, and robust execution environment tailored for automation workloads."
             },
             "ru": {
-                "name": "Высокопроизводительная среда SGC-NOVUS Python Game Management Runtime",
-                "description": "Этот Docker-образ корпоративного класса создан специально для развертывания и управления продвинутыми инструментами оркестрации игровых серверов на базе Python и сопутствующими ботами. Архитектура без привилегий root минимизирует риски эскалации привилегий, обеспечивая при этом максимальную производительность для ресурсоемких задач. Администраторы серверов выбирают эту среду за надежность, воспроизводимость и безопасность, а также за предустановленные утилиты сборки и сетевые инструменты."
+                "name": "Оптимизированная среда выполнения для Python-ботов и автоматизации",
+                "description": "Этот Docker-образ корпоративного уровня создан специально для запуска вспомогательных ботов, административных скриптов и панелей управления с максимальной надежностью и эффективностью. Среда на базе Python содержит предустановленные утилиты (Git, cURL и инструменты сборки) для беспроблемной компиляции зависимостей и управления репозиториями. Администраторы выбирают эту среду за строгие требования безопасности (работа без прав root), минимальный размер и отказоустойчивость, идеально подходящие для задач автоматизации."
             },
             "uk": {
-                "name": "Високопродуктивне середовище виконання Python SGC-NOVUS для керування іграми",
-                "description": "Цей Docker-образ корпоративного рівня ретельно оптимізовано для хостингу та керування сучасними інструментами оркестрації ігрових серверів на базі Python та супутніми ботами. Створений на основі безпечної архітектури без прав суперкористувача (non-root), він мінімізує ризики підвищення привілеїв, забезпечуючи водночас оптимальну продуктивність для ресурсомістких завдань. Адміністратори серверів обирають це середовище для гарантування надійного, відтворюваного та безпечного робочого простору, оснащеного необхідними утилітами збирання та мережевими інструментами."
+                "name": "Оптимізоване середовище для Python-ботів та автоматизації",
+                "description": "Цей Docker-образ корпоративного рівня ретельно створено для запуску ботів-компаньйонів, адміністративних скриптів та оркестраторів панелей із максимальною надійністю та ефективністю. Створений на базі оптимізованого середовища Python, він містить попередньо встановлені необхідні утиліти, такі як Git, cURL та інструменти збірки, що забезпечують безпроблемну компіляцію залежностей і керування репозиторіями. Адміністратори DevOps обирають це середовище виконання за його сувору політику безпеки без використання root-прав, мінімальний розмір та надійну платформу, ідеальну для завдань автоматизації."
             }
         }
     }

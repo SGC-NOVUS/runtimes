@@ -1,0 +1,93 @@
+{
+    "runtimes": {
+        "debian-java": {
+            "hash": "10d2b860c5389e659e2e3a89046e3c1c",
+            "data": {
+                "name": "Enterprise Debian Java 17 Runtime",
+                "description": "This high-performance base image is specifically tailored for hosting and orchestrating multiplayer game servers that require a robust Java runtime environment. Built upon a lightweight Debian slim foundation, it includes essential administrative utilities like cURL, Git, and jq to streamline deployment and automated management. DevOps administrators will appreciate the secure non-root user configuration and pre-configured UTF-8 localization, ensuring maximum stability, resource efficiency, and compatibility for enterprise-grade gaming workloads.",
+                "components": [
+                    "Debian Bullseye Slim",
+                    "OpenJDK 17 JRE Headless",
+                    "cURL",
+                    "Wget",
+                    "Git",
+                    "Unzip",
+                    "jq",
+                    "CA Certificates"
+                ],
+                "warnings": [
+                    "The base image uses debian:bullseye-slim, which is older; consider upgrading to debian:bookworm-slim for modern security patches and package versions."
+                ]
+            },
+            "locales": {
+                "ru": {
+                    "name": "Enterprise Debian Java 17 Runtime",
+                    "description": "Этот высокопроизводительный базовый образ создан специально для хостинга и оркестрации серверов многопользовательских игр, которым требуется надежная среда выполнения Java. Созданный на базе легковесного дистрибутива Debian slim, он включает в себя необходимые утилиты администрирования, такие как cURL, Git и jq, для упрощения деплоя и автоматизированного управления. DevOps-администраторы оценят безопасную конфигурацию непривилегированного пользователя (non-root) и заранее настроенную локализацию UTF-8, которые обеспечивают максимальную стабильность, эффективность использования ресурсов и совместимость с игровыми нагрузками корпоративного уровня."
+                },
+                "uk": {
+                    "name": "Enterprise Debian Java 17 Runtime",
+                    "description": "Цей високопродуктивний базовий образ спеціально оптимізовано для хостингу та оркестрації багатокористувацьких ігрових серверів, яким потрібне надійне середовище виконання Java. Створений на базі легкої та компактної основи Debian, він містить необхідні адміністративні утиліти, такі як cURL, Git і jq, що спрощують розгортання та автоматизоване керування. DevOps-адміністратори оцінять безпечну конфігурацію користувача без прав root та попередньо налаштовану локалізацію UTF-8, які гарантують максимальну стабільність, ефективність використання ресурсів і сумісність для ігрових навантажень корпоративного рівня."
+                }
+            }
+        },
+        "debian-source": {
+            "hash": "f6e7bc9e700732b9b809de62dc3dea6a",
+            "data": {
+                "name": "High-Performance Source Engine Game Server Base",
+                "description": "This enterprise-grade container image is meticulously tailored as a foundational runtime environment for multiplayer game servers, specifically optimized for Source engine titles and hybrid 32/64-bit applications. Featuring a robust Debian Bookworm slim base pre-configured with essential multiarch libraries, build utilities, and networking dependencies like lib32gcc and SDL2, it ensures seamless execution and maximum compatibility. DevOps administrators choose this image for its clean security posture, unprivileged container execution model, and optimized package footprint, which significantly reduces deployment overhead and streamlines server orchestration.",
+                "components": [
+                    "Debian Bookworm Slim",
+                    "Multiarch (i386 & amd64 support)",
+                    "cURL",
+                    "Wget",
+                    "Git",
+                    "Build Essential",
+                    "lib32gcc-s1",
+                    "lib32stdc++6",
+                    "libsdl2-2.0-0",
+                    "MariaDB libraries"
+                ],
+                "warnings": []
+            },
+            "locales": {
+                "ru": {
+                    "name": "Высокопроизводительная базовая среда для игровых серверов Source Engine",
+                    "description": "Этот контейнерный образ корпоративного уровня тщательно оптимизирован в качестве базовой среды выполнения для многопользовательских игровых серверов, с особым упором на игры на движке Source и гибридные 32/64-битные приложения. Основанный на надежном дистрибутиве Debian Bookworm slim и предварительно настроенный с использованием необходимых multiarch-библиотек, утилит сборки и сетевых зависимостей (таких как lib32gcc и SDL2), он гарантирует бесперебойную работу и максимальную совместимость. Администраторы выбирают этот образ за высокий уровень безопасности, запуск от непривилегированного пользователя и оптимизированный размер пакетов, что существенно снижает нагрузку при развертывании и упрощает оркестрацию серверов."
+                },
+                "uk": {
+                    "name": "Високопродуктивна базисна основа ігрового сервера Source Engine",
+                    "description": "Цей контейнерний образ корпоративного рівня ретельно оптимізовано як базове середовище виконання для багатокористувацьких ігрових серверів, зокрема для ігор на рушії Source та гібридних 32/64-бітних застосунків. Завдяки надійній мінімальній базі Debian Bookworm, попередньо налаштованій з необхідними багатоархітектурними бібліотеками, утилітами збирання та мережевими залежностями на кшталт lib32gcc і SDL2, він гарантує безперебійну роботу та максимальну сумісність. DevOps-адміністратори обирають цей образ за високий рівень безпеки, модель виконання у непривілейованому контейнері та оптимізований розмір пакетів, що суттєво знижує накладні витрати на розгортання та спрощує оркестрацію серверів."
+                }
+            }
+        },
+        "python-bot": {
+            "hash": "1c74919bb0d53a77eb47e13aefa21cf8",
+            "data": {
+                "name": "Optimized Python Bot & Automation Runtime",
+                "description": "This enterprise-grade Docker image is meticulously engineered for running companion bots, administrative scripts, and panel orchestrators with maximum reliability and efficiency. Built on an optimized Python environment, it features pre-installed essential utilities like Git, cURL, and build tools to support seamless dependency compilation and repository management. DevOps administrators choose this runtime for its strict non-root security posture, minimal footprint, and robust execution environment tailored for automation workloads.",
+                "components": [
+                    "Python 3.11",
+                    "Debian Bullseye Slim",
+                    "cURL",
+                    "Git",
+                    "jq",
+                    "GCC",
+                    "Python3-dev"
+                ],
+                "warnings": [
+                    "Base image python:3.11-slim-bullseye uses Debian Bullseye, which is older; consider upgrading to Debian Bookworm (python:3.11-slim-bookworm) for long-term support and newer security patches."
+                ]
+            },
+            "locales": {
+                "ru": {
+                    "name": "Оптимизированная среда выполнения для Python-ботов и автоматизации",
+                    "description": "Этот Docker-образ корпоративного уровня создан специально для запуска вспомогательных ботов, административных скриптов и панелей управления с максимальной надежностью и эффективностью. Среда на базе Python содержит предустановленные утилиты (Git, cURL и инструменты сборки) для беспроблемной компиляции зависимостей и управления репозиториями. Администраторы выбирают эту среду за строгие требования безопасности (работа без прав root), минимальный размер и отказоустойчивость, идеально подходящие для задач автоматизации."
+                },
+                "uk": {
+                    "name": "Оптимізоване середовище для Python-ботів та автоматизації",
+                    "description": "Цей Docker-образ корпоративного рівня ретельно створено для запуску ботів-компаньйонів, адміністративних скриптів та оркестраторів панелей із максимальною надійністю та ефективністю. Створений на базі оптимізованого середовища Python, він містить попередньо встановлені необхідні утиліти, такі як Git, cURL та інструменти збірки, що забезпечують безпроблемну компіляцію залежностей і керування репозиторіями. Адміністратори DevOps обирають це середовище виконання за його сувору політику безпеки без використання root-прав, мінімальний розмір та надійну платформу, ідеальну для завдань автоматизації."
+                }
+            }
+        }
+    }
+}
