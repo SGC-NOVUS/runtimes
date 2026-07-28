@@ -5,7 +5,7 @@ LABEL org.opencontainers.image.source="https://github.com/sgc-novus/core-images"
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Устанавливаем системные зависимости и 32-битную архитектуру
+# Устанавливаем системные зависимости для 32-битной и 64-битной архитектуры
 RUN dpkg --add-architecture i386 && \
     apt-get update && \
     apt-get upgrade -y && \
@@ -20,9 +20,13 @@ RUN dpkg --add-architecture i386 && \
         build-essential \
         lib32gcc-s1 \
         lib32stdc++6 \
+        libtinfo6 \
         libtinfo6:i386 \
+        libcurl4-gnutls-dev \
         libcurl4-gnutls-dev:i386 \
+        libmariadb3 \
         libmariadb3:i386 \
+        libsdl2-2.0-0 \
         libsdl2-2.0-0:i386 \
         libicu-dev \
         locales && \
